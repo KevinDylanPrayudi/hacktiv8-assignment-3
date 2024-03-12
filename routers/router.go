@@ -11,7 +11,7 @@ func Router() {
 	router.LoadHTMLFiles("index.tmpl")
 	router.StaticFile("/meteocons--dust-wind-fill.svg", "./src/meteocons--dust-wind-fill.svg")
 	router.Static("/assets/", "./src/")
-	router.GET("/index", controllers.Index)
 	router.GET("/ping", controllers.Ping)
+	router.GET("/", controllers.Index)
 	router.Run(":8080")
 }
