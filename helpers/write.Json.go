@@ -12,8 +12,8 @@ func WriteJson() {
 	for range time.Tick(time.Second * 15) {
 		data := map[string]structs.Data{
 			"Status": {
-				Water: rand.Intn(100),
-				Wind:  rand.Intn(100),
+				Water: rand.Intn(100+1-1) + 1,
+				Wind:  rand.Intn(100+1-1) + 1,
 			},
 		}
 

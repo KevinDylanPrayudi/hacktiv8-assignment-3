@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!doctype html>
 <html>
 <head>
@@ -24,4 +25,32 @@
     {{ .script }}
   </script>
 </body>
+=======
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <Title>Wind & Water level measurement</Title>
+  <link rel="icon" type="image/x-icon" href="meteocons--dust-wind-fill.svg">
+  <link href="/assets/build.css" rel="stylesheet">
+</head>
+<body class="bg-gradient-to-r from-cyan-500 to-blue-500 flex content-center h-screen items-center justify-center">
+  <div class="w-1/2 border-solid shadow-xl rounded-lg bg-white bg-opacity-25 py-8">
+    <span class="text-stone-950 text-l text-center font-display block pb-5">The status of water level and wind speed will change every 15 seconds</span>
+    <h1 class="text-center font-display text-3xl text-cyan-600 font-bold mx-auto">
+      Water Level
+    </h1>
+    <span class="text-stone-950 text-center font-display block">This Water level: <b>Safe</b></span>
+    <h1 class="text-center font-display text-3xl text-blue-600 font-bold mx-auto pt-8">
+      Wind Speed
+    </h1>
+    <span class="text-stone-950 text-center font-display block">This Wind Speed: <b>Safe</b></span>
+    <span class="text-stone-950 text-l text-center font-display block pt-5">This website aims to display the status of water levels and wind speed. If the status shows <b class="text-red-600">danger</b>, please evacuate as soon as possible</span>
+  </div>
+  <script>
+    {{ .script }}
+  </script>
+</body>
+>>>>>>> 746ac3f6573f8d4f94917082e2a5d96c58cdf9f1
 </html>
