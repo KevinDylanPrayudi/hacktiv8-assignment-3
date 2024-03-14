@@ -6,8 +6,10 @@ import (
 	"assignment-3/structs"
 	"encoding/json"
 	"fmt"
+	"io"
 	"log"
 	"math/rand"
+	"net/http"
 	"os"
 	"time"
 
@@ -15,7 +17,7 @@ import (
 )
 
 var cwd, _ = os.Getwd()
-var data map[string]structs.Data
+var data map[string]map[string]structs.Data
 
 func init() {
 	_, err := os.ReadFile(cwd + "\\test.json")
@@ -44,11 +46,16 @@ func main() {
 			select {
 			case <-w.Event:
 				{
-					content, err := os.ReadFile(cwd + "\\test.json")
+					resp, err := http.Get("http://localhost:8080/ping")
 					if err != nil {
 						log.Println(err)
 					}
-					err = json.Unmarshal(content, &data)
+					defer resp.Body.Close()
+					body, err := io.ReadAll(resp.Body)
+					if err != nil {
+						log.Println(err)
+					}
+					err = json.Unmarshal(body, &data)
 					if err != nil {
 						log.Println(err)
 					}
@@ -57,21 +64,21 @@ func main() {
 	Wind Speed: %d m/s %s
 					`
 					var waterStat, windStat string
-					if data["Status"].Water > 8 {
+					if data["data"]["Status"].Water > 8 {
 						waterStat = "Danger"
-					} else if data["Status"].Water > 5 {
+					} else if data["data"]["Status"].Water > 5 {
 						waterStat = "StandBy"
 					} else {
 						waterStat = "Safe"
 					}
-					if data["Status"].Wind > 8 {
+					if data["data"]["Status"].Wind > 8 {
 						windStat = "Danger"
-					} else if data["Status"].Wind > 5 {
+					} else if data["data"]["Status"].Wind > 5 {
 						windStat = "StandBy"
 					} else {
 						windStat = "Safe"
 					}
-					fmt.Printf(contents, data["Status"].Water, waterStat, data["Status"].Wind, windStat)
+					fmt.Printf(contents, data["data"]["Status"].Water, waterStat, data["data"]["Status"].Wind, windStat)
 				}
 			case err := <-w.Error:
 				log.Fatalln(err)
