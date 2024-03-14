@@ -7,7 +7,8 @@ import (
 )
 
 func Router() {
-	router := gin.Default()
+	gin.SetMode(gin.ReleaseMode)
+	router := gin.New()
 	router.LoadHTMLFiles("index.tmpl")
 	router.StaticFile("/meteocons--dust-wind-fill.svg", "./src/meteocons--dust-wind-fill.svg")
 	router.Static("/assets/", "./src/")

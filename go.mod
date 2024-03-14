@@ -2,7 +2,10 @@ module assignment-3
 
 go 1.21.5
 
-require github.com/gin-gonic/gin v1.9.1
+require (
+	github.com/gin-gonic/gin v1.9.1
+	github.com/radovskyb/watcher v1.0.7
+)
 
 require (
 	github.com/bytedance/sonic v1.9.1 // indirect
